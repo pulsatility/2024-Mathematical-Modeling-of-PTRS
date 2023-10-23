@@ -1,0 +1,74 @@
+# Resonant Oscillation (20230217)
+
+#A=H2O2_cyto,
+#B=H2O2_mito,
+#C=SRX_cyto,
+#D=SRXOH_cyto,
+#E=SRXOH_HSP90_cyto,
+#F=SRX_mito,
+#G=PS,
+#H=PRX,
+#I=PRXSOH,
+#J=PRXSO2H,
+#K=Total_PRX,
+#L=HSP90,
+#M=TRX,
+#N=V_ratio
+#Algebraic, PRXSS = Total_PRX - PRX - PRXSOH - PRXSO2H - PS, PRXSS = (K - H - I - J - G)
+
+
+init A = 0.000249626291923073
+
+init B = 0.007738415049615263
+
+init C = 15.70112753320322
+
+init D = 0.4813721105619639
+
+init E = 0.2406860552812254
+
+init F = 0.01172533052956621
+
+init G = 0.006090188766492696
+
+init H = 42.37556223273371
+
+init I = 0.9837590655530842
+
+init J = 9.788918724704583
+
+
+par k0 = 10, k1 = 30, k21 = 10, k22 = 0.21, k3 = 0.02, k4f = 0.0014, k4b = 0.001, k4c = 0.025, k4d = 3.85e-4, k5 = 20
+par k6 = 1, k7 = 30, k8 = 0.00607237, k9 = 3.85e-4, k10 = 0.007, k11 = 0, k12f = 2.84976e-5, k12b = 0, k13 = 2.84976e-5
+par k14 = 2.84976e-5, k15 = 2.84976e-5, k16 = 3.85e-4, K = 100, L = 1, M = 1, N = 1
+
+
+A' = k6*N*B - k7*A - k6*A
+
+B' = k0 - k1*B*H - k3*B*I - k5*B - k6*B + k6/N*A
+
+C' =  k8 - k9*C - k10*C*A + k11*D
+
+D' = k10*C*A - k11*D - k12f*D*L + k12b* E - k13*D 
+
+E' = k12f*D*L - k12b* E - k14*E - k15*E
+
+F' =  k14/N*E - k16*F - k4f*F*J + k4b*G + k4c*G
+
+G' = k4f*F*J - k4b*G - k4c*G - k4d*G
+
+H' = - k1*B*H + k22*M*(K - H - I - J - G)
+
+I' = k1*B*H - k21*I - k3*B*I + k4c*G
+
+J' = k3*B*I - k4f*F*J + k4b*G + k4d*G
+
+	
+@ bound=1e7, T0=0, dt=1, total=1e5, method=stiff,tolerance=0.01 
+@ xlo=0, xhi=100, ylo=0, yhi=0.015 
+@ maxstor=1e7
+@ EPSL=1e-9, EPSU=1e-9, EPSS=1e-9, Dsmin=0.02, Dsmax=5, ParMax=1e12, NormMax=1e12
+@ AUTOXMIN=0, AUTOXMAX=1200, AUTOYMIN=0, AUTOYMAX=1
+@ runnow=0
+
+done
