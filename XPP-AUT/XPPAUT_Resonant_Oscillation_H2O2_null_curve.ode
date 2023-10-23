@@ -1,0 +1,46 @@
+# SRX_bifurcation 20230323 supercritical Hopf Bifurcation
+
+
+init H2O2_mito = 1.012722159183888, 
+
+init H2O2_cyto = 0.03266845674786734,
+
+init PRX = 0.02514528975515985, 
+
+init PRXSOH = 0.07639557640244922, 
+
+init PRXSO2H = 96.19868054878071,
+
+init PS = 0.06189399446882482, 
+
+init SRX_mito = 0.0121257457909269,
+
+
+
+par SRXOH_HSP = 1, k0 = 22, k1 = 30, k21 = 10, k22 = 0.21, k3 =0.02, k4f = 0.0014, k6 = 1, k7 = 30, 
+par k4b = 0.001, k4c = 0.025, k4d = 3.85e-4, k5 = 20, k14 = 2.84976e-5, k16 = 3.85e-4, Tot_PRX = 100, TRX =1, V_ratio = 1,
+
+
+PRXSS = Tot_PRX - PRX- PRXSOH - PRXSO2H - PS
+
+#SRX_mito_tot = SRX_mito + PS
+
+
+
+H2O2_mito' = k0 - k1*H2O2_mito*PRX - k3*H2O2_mito*PRXSOH - k5*H2O2_mito - k6*H2O2_mito + k6/V_ratio*H2O2_cyto
+H2O2_cyto' =  k6*V_ratio*H2O2_mito - k6*H2O2_cyto - k7*H2O2_cyto 
+PRX' = - k1*H2O2_mito*PRX + k22*TRX*PRXSS
+PRXSOH' = k1*H2O2_mito*PRX - k21*PRXSOH - k3*H2O2_mito*PRXSOH + k4c*PS
+PRXSO2H' = k3*H2O2_mito*PRXSOH - k4f*SRX_mito*PRXSO2H + k4b*PS + k4d*PS
+PS' = k4f*SRX_mito*PRXSO2H - k4b*PS - k4c*PS - k4d*PS
+SRX_mito' = k14/V_ratio*SRXOH_HSP - k16*SRX_mito - k4f*SRX_mito*PRXSO2H + k4b*PS + k4c*PS
+
+
+
+@ bound=10000000, T0=0, dt=1, total=100000, method=stiff,tolerance=0.01 
+@ xlo=0, xhi=100, ylo=0, yhi=0.015 
+@ maxstor=10000000
+@ EPSL=1e-9, EPSU=1e-9, EPSS=1e-9, Dsmin=0.02, Dsmax=5, ParMax=1e12, NormMax=1e12
+@ AUTOXMIN=0, AUTOXMAX=1200, AUTOYMIN=0, AUTOYMAX=1
+@ runnow=0
+done
