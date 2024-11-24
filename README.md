@@ -1,4 +1,4 @@
-#  MATLAB and XPP-AUT Code for manuscript "Origins of Bistability and Circadian Oscillation of Cellular Hydrogen Peroxide and Hyperoxidation of Peroxiredoxin"
+#  MATLAB and XPP-AUT Code for manuscript "Origins of Ultrasensitivity and Complexity of Cellular Redox Signaling Dynamics"
 
 Purpose of files
 - Bistability_cmd.m: Main MATLAB code to generate bistability model results.
