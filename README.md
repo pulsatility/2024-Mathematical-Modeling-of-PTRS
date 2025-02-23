@@ -4,8 +4,11 @@ Shengnan Liu<sup>1,2,3</sup>, Jingbo Pi<sup>1,2,3</sup> and Qiang Zhang<sup>4</s
 Published in Antioxidants (2025) https://doi.org/10.3390/antiox14020235
 
 1	Key Laboratory of Environmental Stress and Chronic Disease Control & Prevention Ministry of Education, China Medical University, Shenyang, 110122, China
+
 2	Key Laboratory of Liaoning Province on Toxic and Biological Effects of Arsenic, China Medical University, Shenyang, 110122, China
+
 3	Program of Environmental Toxicology, School of Public Health, China Medical University, Shenyang, 110122, China
+
 4	Gangarosa Department of Environmental Health, Rollins School of Public Health, Emory University, Atlanta, GA, 30322, USA
 
 **Abstract:**
